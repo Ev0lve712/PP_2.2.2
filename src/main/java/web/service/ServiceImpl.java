@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @org.springframework.stereotype.Service
-public class ServiceImpl implements Service {
+public class ServiceImpl implements CarService {
 
     private List<Car> cars = new ArrayList<>();
 
@@ -21,9 +21,13 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public List<Car> getCars() {
-        return cars;
+    public List<Car> getCars(int count) {
+        if (count >= cars.size() || count < 0) {
+            return cars;
+        }
+        return cars.subList(0, count);
     }
+
 
     public void startCar(){
         addCar("Model_1", 1990, "Red");
